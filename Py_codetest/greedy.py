@@ -76,17 +76,38 @@ result = 0
 # 1. n이 k로 나눠지지 않으면 1 빼기
 # 2. k로 나눠지면 나누기
 # 3. 남은 수에 대해 1씩 계속 빼기
-while n >=k:
+
+# while n >=k:
+#     while n % k != 0:
+#         n -= 1
+#         result += 1
+#     n //= k
+#     result += 1
+#
+# while n > 1:
+#     n -= 1
+#     result += 1
+
+for n in range(n >= k):
     while n % k != 0:
         n -= 1
         result += 1
     n //= k
     result += 1
 
-while n > 1:
+# j = 1
+
+for n in range(n > 1):
     n -= 1
     result += 1
+
+# while n>1:
+#     n -= 1
+#     result +=1
+
 print(result)
+
+
 
 
 
