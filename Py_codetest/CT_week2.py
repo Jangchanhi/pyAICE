@@ -1,0 +1,26 @@
+# A01 모험가 길드 문제
+
+print("모험가의 수는?")
+n = int(input())
+
+
+
+data = list(map(int, input().split()))
+data.sort()
+
+result = 0
+
+# 현재 그룹에서의 모험가 수
+count = 0
+
+for i in data:
+    count = count + 1
+    if count >= i:
+        result += 1
+        count = 0
+
+print("총 그룹의 수는 ?")
+print(result)
+
+
+
