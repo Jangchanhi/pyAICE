@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from IPython.display import Image
 # data = pd.DataFrame({'cust_id':['cust1','cust1','cust1','cust2','cust2','cust2','cust3','cust3','cust3'],
 #                     'prod_cd' : ['p1','p2','p3','p1','p2','p3','p1','p2','p3'],
 #                     'grade' : ['A','A','A','A','A','A','B','B','B'],
@@ -15,7 +16,7 @@ import pandas as pd
 # data.pivot_table(index= 'cust_id', columns=['grade', 'prod_cd'], values='pch_amt')
 #
 #
-# from IPython.display import Image
+
 # df1 = pd.DataFrame({'key1' : [0,1,2,3,4], 'value1' : ['a', 'b', 'c', 'd', 'e']}, index=[0,1,2,3,4])
 # df2 = pd.DataFrame({'key1' : [3,4,5,6,7], 'value1' : ['c', 'd', 'e', 'f', 'g']}, index=[3,4,5,6,7])
 #
@@ -89,4 +90,28 @@ print(pd.merge(customer, orders, on='cust_id', how='right'))
 # how -> outer
 print("how=>outer")
 print(pd.merge(customer, orders, on='cust_id', how='outer'))
+
+# index 기준으로 join 하기
+
+cust1 = customer.set_index('cust_id')
+order1 = orders.set_index('cust_id')
+
+print(cust1)
+print(order1)
+
+print(pd.merge(cust1, order1, left_index = True, right_index=True))
+
+#item 위주로
+print(pd.merge(customer, orders, on='cust_id', how='right').groupby('item').sum)
+
+# print(pd.merge(customer, orders, on='cust_id', how='right').groupby('item').sum().sort_values(by='quantity',ascending=False))
+
+# print(pd.merge(customer, orders, on='cust_id',how='inner').groupby(['name', 'item']).sum())
+#
+# a=pd.merge(customer, orders, on='cust_id',how='inner').groupby(['name', 'item']).sum().loc['정우']
+# print(a)
+
+print(cust1.join(order1, how='inner'))
+
+
 
