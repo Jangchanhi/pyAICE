@@ -64,9 +64,29 @@ print(df6)
 # pd.concat([df5,df6], verify_integrity=False)
 print(pd.concat([df5,df6], verify_integrity=False))
 
+customer = pd.DataFrame({'cust_id' : np.arange(6),
+                         'name' : ['찬희', '정우', '이수', '대광', '민우', '민제'],
+                         '나이' : ['30', '29', '20', '40', '55', '45']})
+orders = pd.DataFrame({'cust_id' : [1,1,2,2,2,3,3,1,4,9],
+                         'item' : ['치약', '칫솔', '이어폰', '헤드셋', '수건','생수','수건','치약','생수','케이스'],
+                         'quantity' : [1,2,1,1,3,2,2,3,2,1]})
 
+print(customer)
+print(orders)
 
+# merge -> on 'cust_id'
+print(pd.merge(customer, orders, on='cust_id')) # 기본적으로 inner 적용됨
 
+# how -> inner
+print(pd.merge(customer, orders, on='cust_id', how='inner'))
 
+# how -> left
+print(pd.merge(customer, orders, on='cust_id', how='left'))
 
+# how -> right
+print(pd.merge(customer, orders, on='cust_id', how='right'))
+
+# how -> outer
+print("how=>outer")
+print(pd.merge(customer, orders, on='cust_id', how='outer'))
 
