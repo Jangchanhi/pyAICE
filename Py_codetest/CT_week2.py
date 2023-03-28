@@ -3,8 +3,6 @@
 # print("모험가의 수는?")
 # n = int(input())
 #
-#
-#
 # data = list(map(int, input().split()))
 # data.sort()
 #
