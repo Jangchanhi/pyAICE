@@ -14,9 +14,9 @@ for m in map:
     if m == 'L':
         y = y-1 if y-1 >= 1 else y
     if m == 'U':
-        y = x-1 if x-1 >= 1 else x
+        x = x-1 if x-1 >= 1 else x
     if m == 'D':
-        y = x+1 if x+1 <= n else x
+        x = x+1 if x+1 <= n else x
 
 print(x, y)
 # # N을 입력받기
