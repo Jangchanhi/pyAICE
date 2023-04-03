@@ -105,32 +105,32 @@
 # print(count)
 
 # 왕실 나이트
-
-N = list(input())
-location = [0, 0]
-answer = 0
-x = ['1', '2', '3', '4', '5', '6', '7', '8']
-y = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-
-# 행렬로 변환
-for i in range(8):
-    if N[1] == x[i]:
-        location[0] = i
-    if N[0] == y[i]:
-        location[1] = i
-
-# 나이트가 움직일수 있는 8가지 타입을 인덱스별로 만듬
-dx = [-2, -2, 2, 2, -1, 1, -1, 1]
-dy = [-1, 1, -1, 1, -2, -2, 2, 2]
-
-# 타입별로 돌아봤을 때 매트릭스 안에서 움직일 수 있다면 answer += 1
-for i in range(8):
-    if location[0] - dx[i] >= 0 and location[1] - dy[i] >= 0 and location[0] - dx[i] <= 7 and location[1] - dy[i] <= 7:
-        answer += 1
-    else:
-        continue
-
-print(answer)
+# 
+# N = list(input())
+# location = [0, 0]
+# answer = 0
+# x = ['1', '2', '3', '4', '5', '6', '7', '8']
+# y = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+# 
+# # 행렬로 변환
+# for i in range(8):
+#     if N[1] == x[i]:
+#         location[0] = i
+#     if N[0] == y[i]:
+#         location[1] = i
+# 
+# # 나이트가 움직일수 있는 8가지 타입을 인덱스별로 만듬
+# dx = [-2, -2, 2, 2, -1, 1, -1, 1]
+# dy = [-1, 1, -1, 1, -2, -2, 2, 2]
+# 
+# # 타입별로 돌아봤을 때 매트릭스 안에서 움직일 수 있다면 answer += 1
+# for i in range(8):
+#     if location[0] - dx[i] >= 0 and location[1] - dy[i] >= 0 and location[0] - dx[i] <= 7 and location[1] - dy[i] <= 7:
+#         answer += 1
+#     else:
+#         continue
+# 
+# print(answer)
 
 
 # import sys
@@ -168,6 +168,50 @@ print(answer)
 #     answer -= 2
 #
 # print(answer)
+
+# 구현 실전문제 <3> 게임 개발
+# N, M을 공백으로 구분하여 입력받기
+n, m = map(int, input().split())
+
+# 방문한 위치를 저장하기 위한 맵을 생성하여 0으로 초기화
+d = [[0]*m for _ in range(n)]
+
+x, y, direction = map(int, input().split())
+d[x][y] = 1 # 현재 좌표 방문 처리
+
+array = []
+for i in range(n):
+    array.append(list(map(int, input().split())))
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+def turn_left():
+    global direction
+    direction -= 1
+    if direction == -1:
+        direction = 3
+
+# 시뮬레이션 시작
+count = 1
+turn_time = 0
+while True:
+    # 왼쪽
+    turn_left()
+    nx = x + dx[direction]
+    ny = y + dy[direction]
+
+    if d[nx][ny] == 0 and array[nx][ny] == 0:
+        d[nx][ny] = 1
+        x = nx
+        y = ny
+        count += 1
+        turn_time = 0
+        continue
+
+
+
+
+
 
 
 
