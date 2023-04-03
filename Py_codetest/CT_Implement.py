@@ -12,9 +12,9 @@ for m in map:
     if m == 'R':
         y = y+1 if y+1 <= n else y
     if m == 'L':
-        y = y-1 if y-1 >= n else y
+        y = y-1 if y-1 >= 1 else y
     if m == 'U':
-        y = x-1 if x-1 >= n else x
+        y = x-1 if x-1 >= 1 else x
     if m == 'D':
         y = x+1 if x+1 <= n else x
 
