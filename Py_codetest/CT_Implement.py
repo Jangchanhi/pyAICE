@@ -207,6 +207,24 @@ while True:
         count += 1
         turn_time = 0
         continue
+    # 회전한 이후에 정면에 못가본 칸이 없거나 바다일 경우
+    else:
+        turn_time += 1
+
+    if turn_time == 4:
+        nx = x - dx[direction]
+        ny = y - dy[direction]
+
+        # 뒤로 수 있으면 이동
+        if array[nx][ny] == 0:
+            x = nx
+            y = ny
+        # 뒤가 바다로 막혀있을 경우
+        else:
+            break
+        turn_time = 0
+
+print(count)
 
 
 
