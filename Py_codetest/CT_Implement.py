@@ -4,9 +4,9 @@
 # 둘째 줄에 여행가 A가 이동할 계획서 내용이 주어진다. (1<= 이동횟수 <=100)
 #
 
-# 방법 1.
+# # 방법 1. 채텍
 # n = int(input())
-# map = list(map(str, input().upper().split()))
+# map = list(map(str, input().split()))
 # x, y = 1, 1
 #
 # for m in map:
@@ -20,6 +20,7 @@
 #         x = x+1 if x+1 <= n else x
 #
 # print(x, y)
+
 # # 문제 1 풀이 방법 no.2
 # N을 입력받기
 # n = int(input())
@@ -45,10 +46,18 @@
 # print(x, y)
 
 # 문제 4-2 시각
-# # #
-# time = int(input())
-#
-# count = 0
+# #
+time = int(input())
+
+count = 0
+for i in range(time+1):
+     for j in range(60):
+         for k in range(60):
+                if i % 10 == 3 or j / 10 == 3 or j % 10 == 3 or k / 10 == 3 or k % 10 == 3 :
+                    count += 1
+
+print(count)
+
 # count_h = 0
 # count_m = 0
 # count_s = 0
@@ -77,6 +86,11 @@
 #         for k in range(60):
 #             if str(time) in str(i) + str(j) + str(k):
 #                 count += 1
+
+
+
+
+
 
 # for i in range (time+1):
 #     if str(time) == str(i):
@@ -170,61 +184,61 @@
 # print(answer)
 
 # 구현 실전문제 <3> 게임 개발
-# N, M을 공백으로 구분하여 입력받기
-n, m = map(int, input().split())
-
-# 방문한 위치를 저장하기 위한 맵을 생성하여 0으로 초기화
-d = [[0]*m for _ in range(n)]
-
-x, y, direction = map(int, input().split())
-d[x][y] = 1 # 현재 좌표 방문 처리
-
-array = []
-for i in range(n):
-    array.append(list(map(int, input().split())))
-
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
-def turn_left():
-    global direction
-    direction -= 1
-    if direction == -1:
-        direction = 3
-
-# 시뮬레이션 시작
-count = 1
-turn_time = 0
-while True:
-    # 왼쪽
-    turn_left()
-    nx = x + dx[direction]
-    ny = y + dy[direction]
-
-    if d[nx][ny] == 0 and array[nx][ny] == 0:
-        d[nx][ny] = 1
-        x = nx
-        y = ny
-        count += 1
-        turn_time = 0
-        continue
-    # 회전한 이후에 정면에 못가본 칸이 없거나 바다일 경우
-    else:
-        turn_time += 1
-
-    if turn_time == 4:
-        nx = x - dx[direction]
-        ny = y - dy[direction]
-
-        # 뒤로 수 있으면 이동
-        if array[nx][ny] == 0:
-            x = nx
-            y = ny
-        # 뒤가 바다로 막혀있을 경우
-        else:
-            break
-        turn_time = 0
-
-print(count)
+# # N, M을 공백으로 구분하여 입력받기
+# n, m = map(int, input().split())
+#
+# # 방문한 위치를 저장하기 위한 맵을 생성하여 0으로 초기화
+# d = [[0]*m for _ in range(n)]
+#
+# x, y, direction = map(int, input().split())
+# d[x][y] = 1 # 현재 좌표 방문 처리
+#
+# array = []
+# for i in range(n):
+#     array.append(list(map(int, input().split())))
+#
+# dx = [-1, 0, 1, 0]
+# dy = [0, 1, 0, -1]
+# def turn_left():
+#     global direction
+#     direction -= 1
+#     if direction == -1:
+#         direction = 3
+#
+# # 시뮬레이션 시작
+# count = 1
+# turn_time = 0
+# while True:
+#     # 왼쪽
+#     turn_left()
+#     nx = x + dx[direction]
+#     ny = y + dy[direction]
+#
+#     if d[nx][ny] == 0 and array[nx][ny] == 0:
+#         d[nx][ny] = 1
+#         x = nx
+#         y = ny
+#         count += 1
+#         turn_time = 0
+#         continue
+#     # 회전한 이후에 정면에 못가본 칸이 없거나 바다일 경우
+#     else:
+#         turn_time += 1
+#
+#     if turn_time == 4:
+#         nx = x - dx[direction]
+#         ny = y - dy[direction]
+#
+#         # 뒤로 수 있으면 이동
+#         if array[nx][ny] == 0:
+#             x = nx
+#             y = ny
+#         # 뒤가 바다로 막혀있을 경우
+#         else:
+#             break
+#         turn_time = 0
+#
+# print(count)
 
 
 

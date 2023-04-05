@@ -19,7 +19,7 @@
 # In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 
 
@@ -212,7 +212,7 @@ df2[['A_bill', 'B_bill']].plot(kind='bar', stacked=True)
 # In[17]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 
 
@@ -449,14 +449,14 @@ plt.show()
 # In[33]:
 
 
-get_ipython().run_line_magic('pip', 'install seaborn')
+# get_ipython().run_line_magic('pip', 'install seaborn')
 
 
 # In[34]:
 
 
 #seaborn 패키지 불러오기
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 import seaborn as sns
 
 
