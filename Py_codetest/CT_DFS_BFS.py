@@ -82,39 +82,74 @@ from collections import deque
 # dfs(graph, 1, visited)
 
 # BFS : 너비 우선 탐색 => 가까운 노드부터 탐색하는 알고리즘
+# # 5-9 BFS 예제
+# def bfs(graph, start, visited):
+#     # 큐 구현을 위해 deque 라이브러리 사용
+#     queue = deque([start])
+#     visited[start] = True
+#     # 큐가 빌 때까지 반복
+#     while queue:
+#         # 큐에서 하나의 원소를 뽑아 출력
+#         v = queue.popleft()
+#         print(v, end=' ')
+#         # 해당 원소와 연결된, 아직 방문하지 않은 원소들을 큐에 삽입
+#         for i in graph[v]:
+#             if not visited[i]:
+#                 queue.append(i)
+#                 visited[i] = True
+# 
+# # 각 노드가 연결된 정보를 리스트 자료형으로 표현(2차원 리스트)
+# graph = [
+#     [],
+#     [2,3,8],
+#     [1,7],
+#     [1,4,5],
+#     [3,5],
+#     [3,4],
+#     [7],
+#     [2,6,8],
+#     [1,7]
+# ]
+# 
+# visited = [False] * 9 # 각 노드가 방문된 정보를 리스트 자료형으로 표현(1차원 리스트)
+# bfs(graph, 1, visited) # BFS 함수 호출
 
-def bfs(graph, start, visited):
-    # 큐 구현을 위해 deque 라이브러리 사용
-    queue = deque([start])
-    visited[start] = True
-    # 큐가 빌 때까지 반복
-    while queue:
-        # 큐에서 하나의 원소를 뽑아 출력
-        v = queue.popleft()
-        print(v, end=' ')
-        # 해당 원소와 연결된, 아직 방문하지 않은 원소들을 큐에 삽입
-        for i in graph[v]:
-            if not visited[i]:
-                queue.append(i)
-                visited[i] = True
+# 5-10문제 : 음료수 얼려먹기
+# N, M을 공백으로 구분해서 입력 받음
+n, m = map(int, input().split())
 
-# 각 노드가 연결된 정보를 리스트 자료형으로 표현(2차원 리스트)
-graph = [
-    [],
-    [2,3,8],
-    [1,7],
-    [1,4,5],
-    [3,5],
-    [3,4],
-    [7],
-    [2,6,8],
-    [1,7]
-]
+# 2차원 리스트의 맴 정보 입력받기
+graph = []
+for i in range(n):
+    graph.append(list(map(int, input())))
 
-visited = [False] * 9 # 각 노드가 방문된 정보를 리스트 자료형으로 표현(1차원 리스트)
-bfs(graph, 1, visited) # BFS 함수 호출
+# DFS로 특정한 노드를 방문한 뒤에 연결된 모든 노드들도 방문
+def dfs(x,y):
+    # 주어진 범위를 벗어난느 경우에는 즉시 종료
+    if x <= -1 or x > n or y <= -1 or y > m:
+        return False
+    # 현재 노드를 아직 방문하지 않았다면
+    if graph[x][y] == 0:
+        # 해당 노드 방문 처리
+        graph[x][y] = 1
+        # 상, 하, 좌, 우의 위치도 모두 재귀적으로 호출
+        dfs(x - 1, y)
+        dfs(x + 1, y)
+        dfs(x, y - 1)
+        dfs(x, y + 1)
+        return True
+    return False
 
+# 모든 노드(위치)에 대하여 음료수 채우기
+result = 0
+for i in range(n):
+    for j in range(m):
+        # 현재 위치에서 DFS 수행
+        if dfs(i,j) == True:
+            result += 1
 
+print("아이스크림의 개수는?")
+print(result)
 
 
 
