@@ -63,7 +63,7 @@ def dfs(graph, v, visited):
     # 현재노드와 연결된 다른 노드를 재귀적으로 방문
     for i in graph[v]:
         if not visited[i]:
-            dfs(graph, i, visited)
+            dfs_ice(graph, i)
 # # 각 노드가 연결된 정보를 리스트 자료형으로 표현(2차원 리스트)
 # graph = [
 #     [],
@@ -133,10 +133,10 @@ def dfs_ice(x,y):
         # 해당 노드 방문 처리
         graph[x][y] = 1
         # 상, 하, 좌, 우의 위치도 모두 재귀적으로 호출
-        dfs(x - 1, y)
-        dfs(x, y - 1)
-        dfs(x + 1, y)
-        dfs(x, y + 1)
+        dfs_ice(x - 1, y)
+        dfs_ice(x, y - 1)
+        dfs_ice(x + 1, y)
+        dfs_ice(x, y + 1)
         return True
     return False
 
@@ -145,7 +145,7 @@ result = 0
 for i in range(n):
     for j in range(m):
         # 현재 위치에서 DFS 수행
-        if dfs(i,j) == True:
+        if dfs_ice(i, j) == True:
             result += 1
 
 print("아이스크림의 개수는?")
