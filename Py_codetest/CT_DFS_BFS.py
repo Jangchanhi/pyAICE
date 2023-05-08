@@ -134,8 +134,8 @@ def dfs(x,y):
         graph[x][y] = 1
         # 상, 하, 좌, 우의 위치도 모두 재귀적으로 호출
         dfs(x - 1, y)
-        dfs(x + 1, y)
         dfs(x, y - 1)
+        dfs(x + 1, y)
         dfs(x, y + 1)
         return True
     return False
