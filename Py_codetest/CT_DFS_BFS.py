@@ -83,20 +83,20 @@ from collections import deque
 
 # BFS : 너비 우선 탐색 => 가까운 노드부터 탐색하는 알고리즘
 # # 5-9 BFS 예제
-def bfs(graph, start, visited):
-    # 큐 구현을 위해 deque 라이브러리 사용
-    queue = deque([start])
-    visited[start] = True
-    # 큐가 빌 때까지 반복
-    while queue:
-        # 큐에서 하나의 원소를 뽑아 출력
-        v = queue.popleft()
-        print(v, end=' ')
-        # 해당 원소와 연결된, 아직 방문하지 않은 원소들을 큐에 삽입
-        for i in graph[v]:
-            if not visited[i]:
-                queue.append(i)
-                visited[i] = True
+# def bfs(graph, start, visited):
+#     # 큐 구현을 위해 deque 라이브러리 사용
+#     queue = deque([start])
+#     visited[start] = True
+#     # 큐가 빌 때까지 반복
+#     while queue:
+#         # 큐에서 하나의 원소를 뽑아 출력
+#         v = queue.popleft()
+#         print(v, end=' ')
+#         # 해당 원소와 연결된, 아직 방문하지 않은 원소들을 큐에 삽입
+#         for i in graph[v]:
+#             if not visited[i]:
+#                 queue.append(i)
+#                 visited[i] = True
 
 # # 각 노드가 연결된 정보를 리스트 자료형으로 표현(2차원 리스트)
 # graph = [
@@ -221,7 +221,7 @@ def excape_bfs(x,y):
             if ec_graph[rx][ry] == 0:
                 continue
             if ec_graph[rx][ry] == 1:
-                ec_graph[rx][ry] = ec_graph[n][m] + 1
+                ec_graph[rx][ry] = ec_graph[x][y] + 1
                 queue.append((rx, ry))
     return ec_graph[n-1][m-1]
 
