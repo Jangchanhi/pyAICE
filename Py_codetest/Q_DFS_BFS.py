@@ -190,89 +190,150 @@ from itertools import combinations
 # print(min_value)
 
 # Q 20 감시 피하기
-
-n = int(input()) # 복도의 크기
-board = [] # 복도 정보(N x N)
-teachers = [] # 모든 선생님 위치 정보
-spaces = [] # 모든 빈 공간 위치 정보
-
-for i in range(n):
-    board.append(list(input().split()))
-    for j in range(n):
-        # 선생님이 존재하는 위치 저장
-        if board[i][j] == 'T':
-            teachers.append((i, j))
-        # 장애물을 설치할 수 있는 (빈 공간) 위치 저장
-        if board[i][j] == 'X':
-            spaces.append((i,j))
-
-# 특정 방향으로 감시를 진행(학생 발견: True, 학생 미발견: False)
-def watch(x, y, direction):
-    # 왼쪽 방향으로 감시
-    if direction == 0:
-        while y >= 0:
-            if board[x][y] == 'S': # 학생이 있는 경우
-                return True
-            if board[x][y] == 'O': # 장애물이 있는 경우
-                return False
-            y -= 1
-    # 오른쪽 방향으로 감시
-    if direction == 1:
-        while y < n:
-            if board[x][y] == 'S':
-                return True
-            if board[x][y] == 'O':
-                return False
-            y += 1
-    # 위쪽 방향으로 감시
-    if direction == 2:
-        while x >= 0:
-            if board[x][y] == 'S':
-                return True
-            if board[x][y] == 'O':
-                return False
-            x -= 1
-    # 아래 방향으로 감시
-    if direction == 3:
-        while x < n:
-            if board[x][y] == 'S': # 학생이 있는 경우
-                return True
-            if board[x][y] == 'O':
-                return False
-            x += 1
-    return False
-# 장애물 설치 이후에, 한 명이라도 학생이 감지되는지 검사
-def process():
-    # 모든 선생님의 위치를 하나씩 확인
-    for x, y in teachers:
-        # 4가지 방향으로 학생을 감지할 수 있는지 확인
-        for i in range(4):
-            if watch(x, y, i):
-                return True
-        return False
-    find = False  # 학생이 한 명도 감지되지 않도록 설치할 수 있는지의 여부
-
-# 빈 공간에서 3개를 뽑는 모든 조합을 확인
-for data in combinations(spaces, 3):
-    # 장애물 설치해보기
-    for x, y in data:
-        board[x][y] = 'O'
-    # 학생이 한 명도 감지되지 않는 경우
-    if not process():
-        # 원하는 경우를 발견한 것임
-        find = True
-        break
-    # 설치된 장애물을 다시 없대기
-    for x, y in data:
-        board[x][y] = 'X'
-
-if find:
-    print('Yes')
-else:
-    print('NO')
+#
+# n = int(input()) # 복도의 크기
+# board = [] # 복도 정보(N x N)
+# teachers = [] # 모든 선생님 위치 정보
+# spaces = [] # 모든 빈 공간 위치 정보
+#
+# for i in range(n):
+#     board.append(list(input().split()))
+#     for j in range(n):
+#         # 선생님이 존재하는 위치 저장
+#         if board[i][j] == 'T':
+#             teachers.append((i, j))
+#         # 장애물을 설치할 수 있는 (빈 공간) 위치 저장
+#         if board[i][j] == 'X':
+#             spaces.append((i,j))
+#
+# # 특정 방향으로 감시를 진행(학생 발견: True, 학생 미발견: False)
+# def watch(x, y, direction):
+#     # 왼쪽 방향으로 감시
+#     if direction == 0:
+#         while y >= 0:
+#             if board[x][y] == 'S': # 학생이 있는 경우
+#                 return True
+#             if board[x][y] == 'O': # 장애물이 있는 경우
+#                 return False
+#             y -= 1
+#     # 오른쪽 방향으로 감시
+#     if direction == 1:
+#         while y < n:
+#             if board[x][y] == 'S':
+#                 return True
+#             if board[x][y] == 'O':
+#                 return False
+#             y += 1
+#     # 위쪽 방향으로 감시
+#     if direction == 2:
+#         while x >= 0:
+#             if board[x][y] == 'S':
+#                 return True
+#             if board[x][y] == 'O':
+#                 return False
+#             x -= 1
+#     # 아래 방향으로 감시
+#     if direction == 3:
+#         while x < n:
+#             if board[x][y] == 'S': # 학생이 있는 경우
+#                 return True
+#             if board[x][y] == 'O':
+#                 return False
+#             x += 1
+#     return False
+# # 장애물 설치 이후에, 한 명이라도 학생이 감지되는지 검사
+# def process():
+#     # 모든 선생님의 위치를 하나씩 확인
+#     for x, y in teachers:
+#         # 4가지 방향으로 학생을 감지할 수 있는지 확인
+#         for i in range(4):
+#             if watch(x, y, i):
+#                 return True
+#         return False
+#     find = False  # 학생이 한 명도 감지되지 않도록 설치할 수 있는지의 여부
+#
+# # 빈 공간에서 3개를 뽑는 모든 조합을 확인
+# for data in combinations(spaces, 3):
+#     # 장애물 설치해보기
+#     for x, y in data:
+#         board[x][y] = 'O'
+#     # 학생이 한 명도 감지되지 않는 경우
+#     if not process():
+#         # 원하는 경우를 발견한 것임
+#         find = True
+#         break
+#     # 설치된 장애물을 다시 없대기
+#     for x, y in data:
+#         board[x][y] = 'X'
+#
+# if find:
+#     print('Yes')
+# else:
+#     print('NO')
 
 
 # Q 21 인구 이동
+
+# 땅의 크기(N), L, R값을 입력받기
+n, l, r = map(int, input().split())
+
+# 전체 나라의 정보(N x N)를 입력받기
+graph = []
+for _ in range(n):
+    graph.append(list(map(int, input().split())))
+
+dx = [-1,0,1,0]
+dy = [0,-1,0,1]
+
+result = 0
+
+#특정 위치에서 출발하여 모든 연합을 체크한 뒤에 데이터 갱신
+def process(x,y,index):
+    # x, y의 위치와 연결된 나라(연합) 정보를 담는 리스트
+    united = []
+    united.append((x,y))
+    # 너비 우선 탐색 (BFS)을 위한 큐 자료구조 정의
+    q = deque()
+    q.append((x,y))
+    union[x][y] = index # 현재 연합의 번호 할당
+    summary = graph[x][y] # 현재 연합의 전체 인구수
+    count = 1 # 현재 연합의 국가 수
+    # 큐가 빌 때까지 반복(BFS)
+    while q:
+        x, y = q.popleft()
+        for i in range(4):
+            nx = x+dx[i]
+            ny = y+dy[i]
+            # 바로 옆에 있는 나라를 확인하여
+            if l <= abs(graph[nx][ny] - graph[x][y]) <=r:
+                q.append((nx, ny))
+                # 연합에 추가
+                union[nx][ny] = index
+                summary += graph[nx][ny]
+                count += 1
+                united.append((nx, ny))
+        # 연합 국가까지 인구를 분배
+        for i, j, in united:
+            graph[i][j] = summary // count
+        return count
+
+    total_count = 0
+
+while True:
+    union = [[-1]*n for _ in range(n)]
+    index = 0
+    for i in range(n):
+        for j in range(n):
+            if union[i][j] == -1:
+                process(i, j, index)
+                index += 1
+        # 모든 인구 이동이 끝난 경우
+        if index == n * n:
+            break
+            total_count += 1
+
+# 인구 이동 횟수 출력
+print(total_count)
 
 # Q 22 블록 이동하기
 
