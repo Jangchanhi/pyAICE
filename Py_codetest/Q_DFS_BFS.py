@@ -327,7 +327,7 @@ while True:
             if union[i][j] == -1:
                 process(i, j, index)
                 index += 1
-        # 모든 인구 이동이 끝난 경우
+    # 모든 인구 이동이 끝난 경우
         if index == n * n:
             break
             total_count += 1
